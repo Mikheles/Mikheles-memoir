@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>זיכרונות סבא ותולדות המשפחה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Secular+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <button class="menu-toggle" id="menuToggle" aria-label="תפריט">☰</button>
+  <a class="brand" href="#home" data-nav>זיכרונות המשפחה</a>
+  <nav class="topnav">
+    <a href="#home" data-nav>בית</a>
+    <a href="#read" data-nav>הזיכרונות</a>
+    <a href="#documents" data-nav>מסמכים</a>
+    <a href="#tree" data-nav>עץ משפחה</a>
+    <a href="#timeline" data-nav>ציר זמן</a>
+  </nav>
+</header>
+
+<!-- ===== HOME ===== -->
+<section class="page active" id="page-home">
+  <div class="home-masthead">
+    <span class="eyebrow">נכתב בתל אביב, 2012 · תורגם מרוסית</span>
+    <h1 class="home-title">היה וחלף<span class="home-title-sub">זכרונות ותולדות משפחת מיכלס</span></h1>
+  </div>
+
+  <div class="hero">
+    <div class="hero-text">
+      <blockquote class="hero-quote">
+        <p>מטרת הסיפור שלי היא לתת לנכדתי היקרה אלינה, ולנכדיי דוד ועמית, מושג על השורשים שלנו, על התקופה שבה סבתא מריה ואני חיינו.</p>
+        <cite>— מתוך ההקדמה</cite>
+      </blockquote>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#read" data-nav>קראו את הזיכרונות</a>
+        <a class="btn btn-ghost" href="#tree" data-nav>עץ המשפחה</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="frame"><img src="assets/manuscript/p-001.jpg" alt="כתב היד המקורי — דף השער"></div>
+      <p class="cap">דף השער של כתב היד — «היה וחלף»</p>
+    </div>
+  </div>
+
+  <div class="home-grid">
+    <a class="home-card" href="#read" data-nav>
+      <span class="home-card-k">01</span>
+      <span class="home-card-t">הסיפור המלא</span>
+      <span class="home-card-d">עשרים וחמישה פרקים — מהסבים והסבתות, דרך המלחמה, ועד החיים בישראל.</span>
+    </a>
+    <a class="home-card" href="#documents" data-nav>
+      <span class="home-card-k">02</span>
+      <span class="home-card-t">מסמכים מקוריים</span>
+      <span class="home-card-d">צילומי תעודות, מכתבים וכתבי יד שצוטטו בטקסט.</span>
+    </a>
+    <a class="home-card" href="#tree" data-nav>
+      <span class="home-card-k">03</span>
+      <span class="home-card-t">עץ המשפחה</span>
+      <span class="home-card-d">קשרי המשפחה לאורך ארבעה דורות, כפי שמתוארים בזיכרונות.</span>
+    </a>
+    <a class="home-card" href="#timeline" data-nav>
+      <span class="home-card-k">04</span>
+      <span class="home-card-t">ציר זמן</span>
+      <span class="home-card-d">אירועי המפתח של המשפחה לפי שנה, מסוף המאה ה-19 ואילך.</span>
+    </a>
+  </div>
+
+  <div class="home-strip">
+    <div class="home-strip-head">
+      <h2>הצצה לארכיון</h2>
+      <a href="#documents" data-nav>לכל המסמכים →</a>
+    </div>
+    <div class="strip-row" id="stripRow"><!-- filled by JS --></div>
+  </div>
+</section>
+
+<!-- ===== READ ===== -->
+<section class="page" id="page-read">
+  <div class="read-toolbar">
+    <span class="rt-label">תצוגה:</span>
+    <div class="mode-switch">
+      <button class="mode-btn active" data-mode="he">עברית</button>
+      <button class="mode-btn" data-mode="ru">מקור ברוסית</button>
+      <button class="mode-btn" data-mode="both">צד בצד</button>
+    </div>
+  </div>
+  <div class="read-layout">
+    <aside class="toc" id="toc"><!-- filled by JS --></aside>
+    <article class="reader mode-he" id="reader"><!-- filled by JS --></article>
+  </div>
+</section>
+
+<!-- ===== DOCUMENTS ===== -->
+<section class="page" id="page-documents">
+  <div class="section-head">
+    <h2>מסמכים מקוריים</h2>
+    <p>צילומי מסמכים, תעודות וכתבי יד המוזכרים בזיכרונות. לחצו להגדלה.</p>
+  </div>
+  <div class="doc-grid" id="docGrid"><!-- filled by JS --></div>
+</section>
+
+<!-- ===== TREE ===== -->
+<section class="page" id="page-tree">
+  <div class="section-head">
+    <h2>עץ המשפחה</h2>
+    <p>השושלת כפי שמתוארת בזיכרונות. לחצו על שם לפרטים. ניתן להוסיף ולתקן בקובץ <code>data.js</code>.</p>
+  </div>
+  <div class="tree-scroll"><div class="tree" id="tree"></div></div>
+  <div class="person-panel" id="personPanel"></div>
+</section>
+
+<!-- ===== TIMELINE ===== -->
+<section class="page" id="page-timeline">
+  <div class="section-head">
+    <h2>ציר זמן</h2>
+    <p>אירועי מפתח במשפחה, מסוף המאה ה-19 ועד העלייה לישראל.</p>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="סגור">✕</button>
+  <img id="lbImg" src="" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<footer class="sitefoot">
+  <p>אתר משפחתי פרטי · נבנה מתוך כתב היד המקורי והתרגום לעברית</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="tree-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
