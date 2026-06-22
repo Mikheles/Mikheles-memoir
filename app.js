@@ -115,6 +115,11 @@
           ev.preventDefault();
           var t = document.getElementById("ch-"+c.id);
           if(t) t.scrollIntoView({behavior:"smooth",block:"start"});
+          // collapse TOC on mobile after selecting
+          var toc = document.getElementById("toc");
+          var tt = document.getElementById("tocToggle");
+          if(toc) toc.classList.remove("open");
+          if(tt){ tt.classList.remove("open"); tt.setAttribute("aria-expanded","false"); }
         });
         tg.appendChild(a);
 
@@ -235,6 +240,27 @@
       root.appendChild(row);
       if(gi<gens.length-1) root.appendChild(el("div","connector"));
     });
+    initTreeZoom();
+  }
+
+  var treeScale = 1;
+  function applyTreeScale(){
+    var t = $("#tree");
+    if(t) t.style.transform = "scale(" + treeScale + ")";
+  }
+  function initTreeZoom(){
+    // On small screens, start zoomed out so the whole tree fits.
+    var scroll = document.querySelector(".tree-scroll");
+    if(scroll && window.innerWidth < 760){
+      treeScale = Math.max(0.5, Math.min(1, (window.innerWidth - 32) / 760));
+    } else {
+      treeScale = 1;
+    }
+    applyTreeScale();
+    var zin = $("#treeZoomIn"), zout = $("#treeZoomOut"), zres = $("#treeZoomReset");
+    if(zin) zin.onclick = function(){ treeScale = Math.min(1.6, treeScale + 0.15); applyTreeScale(); };
+    if(zout) zout.onclick = function(){ treeScale = Math.max(0.4, treeScale - 0.15); applyTreeScale(); };
+    if(zres) zres.onclick = function(){ initTreeZoom(); };
   }
   function personNode(p){
     var n = el("div","node");
@@ -296,6 +322,13 @@
     window.addEventListener("hashchange",function(){showPage(location.hash);});
     var mt = $("#menuToggle");
     if(mt) mt.addEventListener("click",function(){$(".topnav").classList.toggle("open");});
+    var tt = $("#tocToggle");
+    if(tt) tt.addEventListener("click",function(){
+      var toc = $("#toc");
+      var open = toc.classList.toggle("open");
+      tt.classList.toggle("open", open);
+      tt.setAttribute("aria-expanded", open ? "true" : "false");
+    });
     $("#lbClose").addEventListener("click",closeLightbox);
     $("#lightbox").addEventListener("click",function(ev){ if(ev.target===this) closeLightbox(); });
     document.addEventListener("keydown",function(ev){ if(ev.key==="Escape") closeLightbox(); });

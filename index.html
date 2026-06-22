@@ -90,6 +90,7 @@
     </div>
   </div>
   <div class="read-layout">
+    <button class="toc-toggle" id="tocToggle" aria-expanded="false">תוכן עניינים <span class="chev">▾</span></button>
     <aside class="toc" id="toc"><!-- filled by JS --></aside>
     <article class="reader mode-he" id="reader"><!-- filled by JS --></article>
   </div>
@@ -109,6 +110,11 @@
   <div class="section-head">
     <h2>עץ המשפחה</h2>
     <p>השושלת כפי שמתוארת בזיכרונות. לחצו על שם לפרטים. ניתן להוסיף ולתקן בקובץ <code>data.js</code>.</p>
+  </div>
+  <div class="tree-zoom-controls">
+    <button id="treeZoomOut" aria-label="הקטן">−</button>
+    <button id="treeZoomReset" aria-label="איפוס">⟲</button>
+    <button id="treeZoomIn" aria-label="הגדל">+</button>
   </div>
   <div class="tree-scroll"><div class="tree" id="tree"></div></div>
   <div class="person-panel" id="personPanel"></div>
